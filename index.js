@@ -1,10 +1,11 @@
 const express = require('express');
-require('dotenv').config(); // Load .env file
+require('dotenv').config(); // Load .env variables
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-  const isAdmin = process.env.IS_ADMIN === 'true';
+  const isAdmin = process.env.IS_ADMIN === 'true'; // Convert string to boolean
 
   if (isAdmin) {
     res.send({
@@ -19,7 +20,6 @@ app.get('/', (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
